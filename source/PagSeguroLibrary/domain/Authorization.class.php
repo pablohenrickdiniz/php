@@ -25,7 +25,7 @@
  * Class PagSeguroAuthorization
  * Represents a PagSeguro application authorization
  */
-class PagSeguroAuthorization
+class Authorization
 {
 
     /***
