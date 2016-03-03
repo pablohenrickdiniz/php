@@ -30,6 +30,7 @@ function rename_pagseguro_files($directory){
 function rename_pagseguro_usages($file){
     $source = file($file);
     foreach($source as $key => $line){
+        $source[$key] = mb_ereg_replace('/\<\?php/','',$source[$key]);
         $source[$key] = mb_ereg_replace('/PagSeguro/','',$source[$key]);
         $source[$key] = mb_ereg_replace('/namespace\s+.*;\n/','',$source[$key]);
     }
@@ -39,6 +40,7 @@ function rename_pagseguro_usages($file){
     $namespace = 'PagSeguro\\'.$dir;
     $namespace_line = 'namespace '.$namespace.';';
     array_unshift($source,$namespace_line);
+    array_unshift($source,'<?php ');
     file_put_contents($file,implode('', $source));
 }
 ?>
